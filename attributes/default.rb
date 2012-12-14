@@ -1,10 +1,7 @@
-# Load settings from data bag 'elasticsearch/settings' -
-#
-settings = Chef::DataBagItem.load('elasticsearch', 'settings') rescue {}
-
 # === VERSION ===
 #
-default.elasticsearch[:version]       = "0.19.10"
+default.elasticsearch[:version]       = "0.20.1"
+default.elasticsearch[:checksum]      = "9396dcff279c2d1c33582eb65e05ee93112bbe3a4c0833b89ecbe228b2650990"
 default.elasticsearch[:repository]    = "elasticsearch/elasticsearch"
 default.elasticsearch[:filename]      = "elasticsearch-#{node.elasticsearch[:version]}.tar.gz"
 default.elasticsearch[:download_url]  = "https://github.com/downloads/" +
@@ -19,10 +16,11 @@ default.elasticsearch[:cluster_name]   = ( settings['cluster_name'] || "elastics
 #
 default.elasticsearch[:dir]       = "/usr/local"
 default.elasticsearch[:user]      = "elasticsearch"
-default.elasticsearch[:conf_path] = "/usr/local/etc/elasticsearch"
-default.elasticsearch[:data_path] = "/usr/local/var/data/elasticsearch"
-default.elasticsearch[:log_path]  = "/usr/local/var/log/elasticsearch"
-default.elasticsearch[:pid_path]  = "/usr/local/var/run/elasticsearch"
+default.elasticsearch[:group]     = "elasticsearch"
+default.elasticsearch[:conf_path] = "#{node.elasticsearch[:dir]}/etc/elasticsearch"
+default.elasticsearch[:data_path] = "#{node.elasticsearch[:dir]}/var/data/elasticsearch"
+default.elasticsearch[:log_path]  = "#{node.elasticsearch[:dir]}/var/log/elasticsearch"
+default.elasticsearch[:pid_path]  = "#{node.elasticsearch[:dir]}/var/run/elasticsearch"
 
 # === MEMORY ===
 #

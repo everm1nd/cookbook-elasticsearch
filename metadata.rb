@@ -9,12 +9,6 @@ name             "elasticsearch"
 depends 'ark'
 
 recommends 'java'
-recommends 'monit'
 
 provides 'elasticsearch'
-provides 'elasticsearch::aws'
-provides 'elasticsearch::proxy'
-provides 'elasticsearch::plugins'
-provides 'elasticsearch::monit'
-provides 'service[elasticsearch]'
-provides 'install_plugin(:plugin_name)'
+provides 'runit_service[elasticsearch]'

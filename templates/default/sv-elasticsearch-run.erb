@@ -1,8 +1,3 @@
-# JVM Configuration for ElasticSearch
-# ===================================
-# See <https://github.com/elasticsearch/elasticsearch/blob/master/bin/elasticsearch.in.sh>
-#
-
 ES_HOME='<%= "#{node.elasticsearch[:dir]}/elasticsearch" %>'
 ES_CLASSPATH=$ES_CLASSPATH:$ES_HOME/lib/*:$ES_HOME/lib/sigar/*
 ES_HEAP_SIZE=<%= node.elasticsearch[:max_mem] %>
