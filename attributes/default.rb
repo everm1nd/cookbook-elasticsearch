@@ -7,11 +7,6 @@ default.elasticsearch[:filename]      = "elasticsearch-#{node.elasticsearch[:ver
 default.elasticsearch[:download_url]  = "https://github.com/downloads/" +
                                         "#{node.elasticsearch[:repository]}/#{node.elasticsearch[:filename]}"
 
-# === SETTINGS ===
-#
-default.elasticsearch[:node_name]      = node.name
-default.elasticsearch[:cluster_name]   = ( settings['cluster_name'] || "elasticsearch" rescue "elasticsearch" )
-
 # === USER & PATHS
 #
 default.elasticsearch[:dir]       = "/usr/local"

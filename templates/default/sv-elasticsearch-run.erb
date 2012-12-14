@@ -1,11 +1,13 @@
-ES_HOME='<%= "#{node.elasticsearch[:dir]}/elasticsearch" %>'
-ES_CLASSPATH=$ES_CLASSPATH:$ES_HOME/lib/*:$ES_HOME/lib/sigar/*
-ES_HEAP_SIZE=<%= node.elasticsearch[:max_mem] %>
+#!/bin/zsh
+exec 2>&1
 
-ES_JAVA_OPTS="
+export ES_HOME='<%= "#{node.elasticsearch[:dir]}/elasticsearch" %>'
+export ES_CLASSPATH=$ES_CLASSPATH:$ES_HOME/lib/*:$ES_HOME/lib/sigar/*
+export ES_HEAP_SIZE=<%= node.elasticsearch[:max_mem] %>
+
+export ES_JAVA_OPTS="
   -server
   -Djava.net.preferIPv4Stack=true
-  -Xms<%= node.elasticsearch[:allocated_memory] %>
   -Xmx<%= node.elasticsearch[:allocated_memory] %>
   -Xss<%= node.elasticsearch[:thread_stack_size] %>
   -XX:+UseParNewGC
@@ -13,3 +15,9 @@ ES_JAVA_OPTS="
   -XX:CMSInitiatingOccupancyFraction=75
   -XX:+UseCMSInitiatingOccupancyOnly
   -XX:+HeapDumpOnOutOfMemoryError"
+
+export SHELL=<%= "/bin/zsh" %>
+export USER=<%= node.elasticsearch[:user] %>
+export GROUP=<%= node.elasticsearch[:group] %>
+
+exec chpst -u $USER:$GROUP /usr/local/bin/elasticsearch
