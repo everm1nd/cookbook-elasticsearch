@@ -45,16 +45,6 @@ ark "elasticsearch" do
   has_binaries ['bin/elasticsearch', 'bin/plugin']
 end
 
-# Create ES config file
-#
-template "elasticsearch.yml" do
-  path   "#{node.elasticsearch[:conf_path]}/elasticsearch.yml"
-  source "elasticsearch.yml.erb"
-  owner node.elasticsearch[:user]
-  group node.elasticsearch[:user]
-  mode 0755
-end
-
 # Create service
 #
 runit_service "elasticsearch"
