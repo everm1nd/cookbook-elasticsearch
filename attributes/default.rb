@@ -3,9 +3,9 @@
 default.elasticsearch[:version]       = "0.20.1"
 default.elasticsearch[:checksum]      = "9396dcff279c2d1c33582eb65e05ee93112bbe3a4c0833b89ecbe228b2650990"
 default.elasticsearch[:repository]    = "elasticsearch/elasticsearch"
-default.elasticsearch[:filename]      = "elasticsearch-#{node.elasticsearch[:version]}.tar.gz"
-default.elasticsearch[:download_url]  = "https://github.com/downloads/" +
-                                        "#{node.elasticsearch[:repository]}/#{node.elasticsearch[:filename]}"
+default.elasticsearch[:filename]      = "v#{node.elasticsearch[:version]}"
+default.elasticsearch[:download_url]  = "https://nodeload.github.com/" +
+                                        "#{node.elasticsearch[:repository]}/tar.gz/#{node.elasticsearch[:filename]}"
 
 # === USER & PATHS
 #
